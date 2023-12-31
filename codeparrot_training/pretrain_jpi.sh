@@ -4,10 +4,10 @@
 
 export CUDA_DEVICE_MAX_CONNECTIONS=1
 
-CHECKPOINT_PATH=/workspace/Megatron-LM/checkpoint
-VOCAB_FILE=/workspace/Megatron-LM/vocab.json
-MERGE_FILE=/workspace/Megatron-LM/merges.txt
-DATA_PATH=/workspace/Megatron-LM/codeparrot_content_document
+CHECKPOINT_PATH=/workspace/Megatron-LM/codeparrot_training/checkpoint
+VOCAB_FILE=/workspace/Megatron-LM/codeparrot_training/vocab.json
+MERGE_FILE=/workspace/Megatron-LM/codeparrot_training/merges.txt
+DATA_PATH=/workspace/Megatron-LM/codeparrot_training/codeparrot_content_document
 
 GPT_ARGS="
     --num-layers 24 \
@@ -42,7 +42,7 @@ OUTPUT_ARGS="
     --eval-iters 10
 "
 
-torchrun pretrain_gpt.py \
+torchrun ../pretrain_gpt.py \
     $GPT_ARGS \
     $DATA_ARGS \
     $OUTPUT_ARGS \

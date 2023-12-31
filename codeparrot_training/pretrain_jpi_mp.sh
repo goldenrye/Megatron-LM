@@ -12,10 +12,10 @@ NNODES=1
 NODE_RANK=0
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
-CHECKPOINT_PATH=/workspace/Megatron-LM/checkpoint
-VOCAB_FILE=/workspace/Megatron-LM/vocab.json
-MERGE_FILE=/workspace/Megatron-LM/merges.txt
-DATA_PATH=/workspace/Megatron-LM/codeparrot_content_document
+CHECKPOINT_PATH=/workspace/Megatron-LM/codeparrot_training/checkpoint
+VOCAB_FILE=/workspace/Megatron-LM/codeparrot_training/vocab.json
+MERGE_FILE=/workspace/Megatron-LM/codeparrot_training/merges.txt
+DATA_PATH=/workspace/Megatron-LM/codeparrot_training/codeparrot_content_document
 
 DISTRIBUTED_ARGS="
     --nproc_per_node $GPUS_PER_NODE \
@@ -61,7 +61,7 @@ OUTPUT_ARGS="
     --eval-iters 10
 "
 
-torchrun $DISTRIBUTED_ARGS pretrain_gpt.py \
+torchrun $DISTRIBUTED_ARGS ../pretrain_gpt.py \
     $GPT_ARGS \
     $DATA_ARGS \
     $OUTPUT_ARGS \
